@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>
+         Listeleme
+      </title>
+   </head>
+
+   <style type="text/css">
+   html{
+	font-family:"Arial Black", Gadget, sans-serif;
+	text-align: center;
+}
+
+body {
+	max-width: 500px;
+	margin: 0 auto;
+} 
+
+input {
+	margin-top: 30px;
+	width: 500px;
+	height: 60px;
+	font-size: 40px;
+	border: 2px solid red;
+	border-radius: 6px;
+}
+
+input:focus {
+	outline:none;
+}
+
+li { 
+	text-align: left;
+	font-size: 40px;
+	list-style: none;
+	margin: 0;
+}
+
+li:hover {
+	color:red;
+}
+   </style>
+   <body>
+      <input id="input" placeholder="Yaz Ekle">
+      <ul id="list"></ul> 
+   </body>
+   <script>
+   alert("Eklemek İçin ENTER ve Silmek İçin Verinin Üzerine Tıklanmalıdır.");
+   function itemekle() {
+	var veri = document.getElementById('input').value;//eklenecek veri
+	var ul = document.getElementById("list");//verinin ekleneceği ana alan
+	var li = document.createElement('li');//veri ile beraber oluşturulacak kod parçacığı
+  li.appendChild(document.createTextNode(" * "+veri));
+  ul.appendChild(li);
+  document.getElementById('input').value="";//inputtan veri okuma
+  li.onclick = removeItem;//veri üzerine tıklandığında removeitem fonksiyonu çalışacak
+}
+
+document.body.onkeyup = function(e){
+      if(e.keyCode == 13){ //enter tuşu kodu
+        itemekle();//basıldığında çalışacak fonksiyon
+      }
+  }
+
+function removeItem(e) {
+  e.target.parentElement.removeChild(e.target);// veri silme fonksiyonu 
+}
+
+   </script>
+</html>
